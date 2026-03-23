@@ -5,6 +5,8 @@
     "hashed_password": "12345",
     "tickets_booked": [
       {
+        "ticket_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        "user_id": "abcdef",
         "source": "Bangalore",
         "destination": "Delhi",
         "date_of_travel": "2023-12-08T18:30:00Z",
@@ -22,7 +24,8 @@
             "Jaipur": "13:50:00",
             "Delhi": "13:50:00"
 
-          }
+          },
+          "stattions" : ["bangalore","jaipur","delhi"]
         }
       }
     ]

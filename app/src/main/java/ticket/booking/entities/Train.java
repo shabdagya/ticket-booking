@@ -1,10 +1,16 @@
 package ticket.booking.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import java.util.Map;
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 
 public class Train {
 

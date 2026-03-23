@@ -55,12 +55,13 @@ public class TrainService {
     }
     public void updateTrain(Train newTrain){
         OptionalInt index= IntStream.range(0,trainList.size()).filter(i->trainList.get(i).getTrainId().equals(newTrain.getTrainId())).findFirst();
-        if(index.isPresent()){
+            if(index.isPresent()){
             trainList.set(index.getAsInt(),newTrain);
             saveTrainListToFile();
         }
         else{
-            addTrain(newTrain);
+            trainList.add(newTrain);
+            saveTrainListToFile();
         }
 
 

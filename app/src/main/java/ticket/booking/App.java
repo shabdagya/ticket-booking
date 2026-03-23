@@ -31,6 +31,7 @@ public class App {
             System.out.println("There is something wrong");
             return;
         }
+        Train trainSelectedForBooking=new Train();
         while(option!=7) {
             System.out.println("Choose option");
             System.out.println("1. Sign up");
@@ -41,7 +42,7 @@ public class App {
             System.out.println("6. Cancel my Booking");
             System.out.println("7. Exit the App");
             option = sc.nextInt();
-            Train trainSelectedForBooking=new Train();
+
 
             switch(option){
                 case 1:
@@ -93,7 +94,7 @@ public class App {
                         );
                     }
                     System.out.println("Select a train by typing 1,2,3....");
-                    trainSelectedForBooking=trains.get(sc.nextInt());
+                    trainSelectedForBooking=trains.get(sc.nextInt()-1);
                     break;
                 case 5:
                     System.out.println("Select a seat out of these seats");
@@ -118,6 +119,15 @@ public class App {
                     else{
                         System.out.println("Can't book this seat");
                     }
+                    break;
+                case 6:
+                    if(userBookingService.getUser()==null){
+                        System.out.println("Please login first");
+                        break;
+                    }
+                    System.out.println("Enter the ticket ID to cancel");
+                    String ticketIdToCancel=sc.next();
+                    System.out.println(userBookingService.cancelBooking(ticketIdToCancel) ? "Booking Cancelled" :"Could not Cancel" );
                     break;
                 default:
                     break;

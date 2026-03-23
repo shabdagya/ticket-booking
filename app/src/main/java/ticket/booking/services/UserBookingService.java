@@ -3,6 +3,7 @@ package ticket.booking.services;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeBase;
+import ticket.booking.entities.Ticket;
 import ticket.booking.entities.Train;
 import ticket.booking.entities.User;
 import ticket.booking.util.UserServiceUtil;
@@ -64,9 +65,8 @@ public class UserBookingService {
         }
     }
 
-    public Boolean cancelBooking(){
-        Scanner s=new Scanner(System.in);
-        String ticketId=s.next();
+    public Boolean cancelBooking(String ticketId){
+
         if(ticketId==null || ticketId.isEmpty())return false;
 
         Optional<User> useropt=userList.stream().filter(u-> u.getName().equals(user.getName())).findFirst(); // mai userList se nikalunga wo user taaki jab mai uski ticket delete kru to wo userList (that acts as my main db rn) usse bhi delete  ho jaye
@@ -107,6 +107,8 @@ public class UserBookingService {
                     seats.get(row).set(col,1);
                     train.setSeats(seats);
                     trainService.addTrain(train);
+                    Ticket newTicket=new Ticket(UUID.randomUUID().toString(),user.getUserId(),"source","destination",java.time.LocalDate.now().toString(),train);
+                    user.getTicketsBooked().add(newTicket);
 
                     return true;
                 }
